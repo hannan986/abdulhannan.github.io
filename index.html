@@ -13,16 +13,16 @@
         }
 
         :root {
-            --primary-color: #8b5cf6;
-            --secondary-color: #7c3aed;
-            --dark-bg: #0f1419;
-            --light-bg: #1a2237;
-            --card-bg: #1f2937;
-            --text-dark: #ffffff;
-            --text-light: #c9d1db;
-            --border-color: #3d4556;
-            --accent-color: #10b981;
-            --ai-gradient: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+            --primary-color: #6d28d9; /* purple accent */
+            --secondary-color: #8b5cf6;
+            --dark-bg: #fbf7f1;    /* creamy page background */
+            --light-bg: #fffdf8;   /* section background / off-white */
+            --card-bg: #ffffff;    /* cards remain white */
+            --text-dark: #0b1220;  /* deep charcoal for text */
+            --text-light: #6b7280; /* soft gray for secondary text */
+            --border-color: #efe7dd; /* subtle light border */
+            --accent-color: #6ee7b7; /* small accent (kept) */
+            --ai-gradient: linear-gradient(135deg, #8b5cf6 0%, #e9ddff 100%);
         }
 
         html {
@@ -121,12 +121,13 @@
 
         /* Navigation */
         nav {
-            background-color: var(--card-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background-color: var(--light-bg);
+            box-shadow: 0 2px 6px rgba(16,24,40,0.06);
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
+            color: var(--text-dark);
         }
 
         nav .container {
@@ -136,13 +137,31 @@
             padding: 1rem 2rem;
         }
 
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.4rem;
+        }
+
+        .nav-toggle .bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-dark);
+            margin: 4px 0;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
         nav .logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary-color);
         }
 
-        nav ul {
+        nav .nav-list {
             display: flex;
             list-style: none;
             gap: 2rem;
@@ -167,8 +186,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
-            color: white;
+            background: linear-gradient(135deg, rgba(109,40,217,0.9) 0%, var(--light-bg) 100%);
+            color: var(--text-dark);
             padding: 6rem 2rem;
             text-align: center;
             min-height: 600px;
@@ -179,7 +198,45 @@
 
         .hero .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            object-fit: cover;
+            box-shadow: 0 12px 40px rgba(109,40,217,0.3);
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .hero-location {
+            font-size: 1rem;
+            color: #fffdf8;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            animation: slideInUp 0.8s ease-out 0.4s both;
         }
 
         .hero h1 {
@@ -279,17 +336,18 @@
         }
 
         .highlight-item {
-            background: linear-gradient(135deg, #1f2937 0%, #1a2332 100%);
-            padding: 2rem;
+            background: var(--card-bg);
+            padding: 1.4rem;
             border-radius: 12px;
-            border-left: 4px solid var(--primary-color);
-            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.2s ease;
             text-align: center;
+            border-top: 4px solid var(--accent-color);
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
         }
 
         .highlight-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
         }
 
         .highlight-item i {
@@ -319,10 +377,10 @@
         }
 
         .detail-block {
-            background: linear-gradient(135deg, #1f2937 0%, #232d3d 100%);
-            padding: 1.8rem;
+            background: var(--card-bg);
+            padding: 1.6rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
             border: 1px solid var(--border-color);
         }
 
@@ -348,24 +406,23 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
 
         .service-card {
             background-color: var(--card-bg);
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+            transition: box-shadow 0.2s ease;
+            border-top: 4px solid var(--accent-color);
             animation: slideInUp 0.6s ease-out;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
         }
 
         .service-card h3 {
@@ -378,8 +435,8 @@
         }
 
         .service-card.ai-featured {
-            border-left-color: #764ba2;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            background: var(--card-bg);
+            border-top: 4px solid rgba(118,75,162,0.9);
         }
 
         .service-card p {
@@ -403,22 +460,23 @@
 
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
 
         .work-item {
             background-color: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+            transition: box-shadow 0.2s ease;
             animation: scaleIn 0.6s ease-out;
+            border-top: 4px solid var(--accent-color);
         }
 
         .work-item:hover {
-            transform: scale(1.05);
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
         }
 
         .work-item-content {
@@ -441,7 +499,7 @@
         /* Skills Section */
         .skills {
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, #1a1f3a 0%, #0f172a 100%);
+            background: var(--light-bg);
         }
 
         .skills-container {
@@ -452,12 +510,12 @@
         }
 
         .skill-category {
-            background: linear-gradient(135deg, #1f2937 0%, #1a2332 100%);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            border: 2px solid var(--border-color);
-            transition: all 0.3s ease;
+            background: var(--card-bg);
+            padding: 1.6rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.2s ease;
             position: relative;
             overflow: hidden;
             animation: scaleIn 0.6s ease-out;
@@ -474,9 +532,7 @@
         }
 
         .skill-category:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2);
-            border-color: var(--primary-color);
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
         }
 
         .skill-category h3 {
@@ -563,9 +619,10 @@
         }
 
         .experience-timeline {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 3rem auto 0;
             position: relative;
+            padding: 2rem 0;
         }
 
         .experience-timeline::before {
@@ -579,7 +636,7 @@
         }
 
         .experience-item {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             width: 45%;
         }
 
@@ -598,19 +655,18 @@
         }
 
         .experience-content {
-            background: linear-gradient(135deg, #1f2937 0%, #1a2332 100%);
-            padding: 2rem;
+            background: var(--card-bg);
+            padding: 1.8rem;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--border-color);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.2s ease;
             position: relative;
+            border-top: 4px solid var(--accent-color);
         }
 
         .experience-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
-            border-color: var(--primary-color);
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
         }
 
         .experience-badge {
@@ -706,7 +762,7 @@
         /* Education Section */
         .education {
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            background: var(--light-bg);
         }
 
         .education-container {
@@ -718,21 +774,19 @@
         }
 
         .education-card {
-            background: linear-gradient(135deg, #1f2937 0%, #1a2332 100%);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            border: 2px solid var(--border-color);
-            border-left: 5px solid var(--primary-color);
-            transition: all 0.3s ease;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.2s ease;
             position: relative;
             animation: slideInUp 0.6s ease-out;
+            border-top: 4px solid var(--accent-color);
         }
 
         .education-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
-            border-color: var(--primary-color);
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
         }
 
         .education-card::before {
@@ -797,9 +851,9 @@
 
         .testimonial-card {
             background-color: var(--card-bg);
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
             border-top: 4px solid var(--accent-color);
             animation: slideInUp 0.6s ease-out;
         }
@@ -842,10 +896,11 @@
 
         .contact-item {
             background-color: var(--card-bg);
-            padding: 2rem;
+            padding: 1.6rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 18px rgba(16,24,40,0.06);
             animation: fadeIn 0.6s ease-out;
+            border-top: 4px solid var(--accent-color);
         }
 
         .contact-item a {
@@ -861,10 +916,11 @@
 
         /* Footer */
         footer {
-            background-color: var(--dark-bg);
-            color: white;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             text-align: center;
             padding: 2rem;
+            border-top: 1px solid var(--border-color);
         }
 
         /* Responsive */
@@ -895,9 +951,24 @@
                 min-height: 500px;
             }
 
+            .hero .container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
+
             .hero h1 {
                 font-size: 2.2rem;
                 margin-bottom: 0.8rem;
+                text-align: center;
             }
 
             .hero p {
@@ -912,14 +983,42 @@
                 margin: 0.4rem 0.3rem;
             }
 
+            /* show hamburger and hide inline nav on small screens */
+            .nav-toggle { display: block; }
+            nav .nav-list {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 64px;
+                background: var(--light-bg);
+                box-shadow: 0 8px 20px rgba(16,24,40,0.08);
+                border-radius: 8px;
+                padding: 0.25rem 0.5rem;
+                width: 220px;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(-8px);
+                transition: max-height 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease, transform 260ms cubic-bezier(.2,.9,.2,1);
+                pointer-events: none;
+            }
+            nav .nav-list.open {
+                max-height: 420px; /* enough for menu items */
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+            nav .nav-list li { display: block; margin: 0.5rem 0; }
+
             .experience-timeline::before {
-                left: 0;
+                display: none;
             }
 
             .experience-item {
                 width: 100%;
                 margin-left: 0 !important;
-                padding-left: 2rem !important;
+                margin-bottom: 2rem;
+                padding-left: 0 !important;
                 text-align: left !important;
                 padding-right: 0 !important;
             }
@@ -970,8 +1069,15 @@
             }
 
             .contact-info {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
             }
 
             .contact-item {
@@ -985,7 +1091,12 @@
     <nav>
         <div class="container">
             <div class="logo">Abdul Hannan</div>
-            <ul>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-list">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#works">Works</a></li>
@@ -1001,10 +1112,19 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Abdul Hannan</h1>
-            <p>Full Stack Software Developer | Java Spring Boot | JavaScript | React | Node.js</p>
-            <a href="#contact" class="btn">Get in Touch</a>
-            <a href="#about" class="btn">Learn More</a>
+            <div class="hero-content">
+                <h1>Abdul Hannan</h1>
+                <p>Full Stack Software Developer | Java Spring Boot | JavaScript | React | Node.js</p>
+                <div class="hero-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Maryland, United States</span>
+                </div>
+                <a href="#contact" class="btn">Get in Touch</a>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+            <div class="hero-image">
+                <img src="ABDUL HANNAN.jpeg" alt="Abdul Hannan" class="profile-img">
+            </div>
         </div>
     </section>
 
@@ -1504,6 +1624,10 @@
                         <h3><i class="fab fa-youtube"></i> YouTube</h3>
                         <a href="https://www.youtube.com/@AbdulHannan-wh9nk" target="_blank">Abdul Hannan Arif</a>
                     </div>
+                    <div class="contact-item">
+                        <h3><i class="fab fa-linkedin"></i> LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/abdul-hannan-2a784b198/" target="_blank">Abdul Hannan</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1513,5 +1637,24 @@
     <footer>
         <p>&copy; 2024 Abdul Hannan. All rights reserved.</p>
     </footer>
+    <script>
+        // Mobile nav toggle
+        (function(){
+            const btn = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav-list');
+            if(!btn || !nav) return;
+            btn.addEventListener('click', function(){
+                const open = nav.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            // close nav when clicking outside
+            document.addEventListener('click', function(e){
+                if(!nav.classList.contains('open')) return;
+                if(e.target.closest('nav')) return;
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded','false');
+            });
+        })();
+    </script>
 </body>
 </html>
